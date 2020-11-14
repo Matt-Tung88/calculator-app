@@ -3,6 +3,11 @@ const app = express();
 const http = require("http").createServer(express);
 const io = require("socket.io")(http);
 const path = require("path");
+const timeout = require('connect-timeout')
+
+app.use(timeout('5s'))
+
+
 
 //what port the web server to listen on
 const port = process.env.PORT || 3000;
