@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 const results = [];
 const ids = [];
 
-setInterval(() => {
+
 //console.logs various sentences based on connecting/disconnecting
 io.on("connection", (socket) => {
   console.log("A user connected");
@@ -38,19 +38,20 @@ io.on("connection", (socket) => {
   });
 
   //move each output into results array at the beginning of the array and make sure the length doesnt go exceed 10
-  socket.on("output", (result) => {
-    results.unshift(result);
+  setInterval(
+    socket.on("output", (result) => {
+      results.unshift(result);
+  
+      if (results.length > 10) {
+        results.pop();
+      }
+      //send result back to client so users can see other users' calculations
+      io.emit("outputs", result);
+  
+    })
+    , 3000);
 
-    if (results.length > 10) {
-      results.pop();
-    }
-    //send result back to client so users can see other users' calculations
-    io.emit("outputs", result);
-
-  });
 });
-
-}, 5000);
 
 http.listen(port, () =>
   console.log(
