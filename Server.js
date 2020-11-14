@@ -3,9 +3,11 @@ const app = express();
 const http = require("http").createServer(express);
 const io = require("socket.io")(http);
 const path = require("path");
-const timeout = require('connect-timeout')
+const timeout = require('connect-timeout');
 
-app.use(timeout('5s'))
+app.use(timeout('5s'));
+require ('newrelic');
+
 
 
 
