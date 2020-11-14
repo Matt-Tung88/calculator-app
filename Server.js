@@ -38,19 +38,16 @@ io.on("connection", (socket) => {
   });
 
   //move each output into results array at the beginning of the array and make sure the length doesnt go exceed 10
-  setInterval(
-    socket.on("output", (result) => {
-      results.unshift(result);
-  
-      if (results.length > 10) {
-        results.pop();
-      }
-      //send result back to client so users can see other users' calculations
-      io.emit("outputs", result);
-  
-    })
-    , 3000);
+  socket.on("output", (result) => {
+    results.unshift(result);
 
+    if (results.length > 10) {
+      results.pop();
+    }
+    //send result back to client so users can see other users' calculations
+    io.emit("outputs", result);
+
+  });
 });
 
 http.listen(port, () =>
