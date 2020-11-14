@@ -6,8 +6,6 @@ const path = require("path");
 const timeout = require('connect-timeout');
 
 app.use(timeout('5s'));
-require ('newrelic');
-
 
 
 
@@ -22,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'build')));
 const results = [];
 const ids = [];
 
-
+setInterval(() => {
 //console.logs various sentences based on connecting/disconnecting
 io.on("connection", (socket) => {
   console.log("A user connected");
@@ -51,6 +49,8 @@ io.on("connection", (socket) => {
 
   });
 });
+
+}, 5000);
 
 http.listen(port, () =>
   console.log(
