@@ -3,17 +3,12 @@ const app = express();
 const http = require("http").createServer(express);
 const io = require("socket.io")(http);
 const path = require("path");
-const timeout = require('connect-timeout');
-
-app.use(timeout('5s'));
-
 
 
 //what port the web server to listen on
 const port = process.env.PORT || 3000;
 
 
-// app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 //empty arrays: results = all the calculations for the new user to see and sockets = keep track of new/old socket.ids

@@ -37,10 +37,7 @@ const data = {
 };
 
 //connect to socket
-// const url = window.location.host;
 const socket = io.connect();
-// const socket = io.connect("https://localhost:5000");
-
 
 const App = () => {
 
