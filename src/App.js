@@ -37,7 +37,7 @@ const data = {
 };
 
 //connect to socket
-const socket = io.connect();
+// const socket = io.connect();
 
 const App = () => {
 
@@ -50,11 +50,11 @@ const App = () => {
 
 
   //listen to "outputs" from the server and add the result to an array
-  useEffect(() => {
-    socket.on("outputs", (result) => {
-        setOutputs((prevOutputs) => [result, ...prevOutputs]);
-    });
-  }, []);
+  // useEffect(() => {
+  //   socket.on("outputs", (result) => {
+  //       setOutputs((prevOutputs) => [result, ...prevOutputs]);
+  //   });
+  // }, []);
 
 
   //when outputs change, make sure the length stays at 10 or remove last item
@@ -66,11 +66,11 @@ const App = () => {
 
 
   //listen for 'new-user' from the server and add the calculations to an array in order for the suer to see previous calculations 
-  useEffect(()=> {
-    socket.on('new-user', (calculations) => {
-      setOutputs(calculations);
-    })
-  }, []);
+  // useEffect(()=> {
+  //   socket.on('new-user', (calculations) => {
+  //     setOutputs(calculations);
+  //   })
+  // }, []);
 
 
   //when user types name -> change value in name state
@@ -163,8 +163,10 @@ const App = () => {
           answer
         ).toString()}`;
 
+        setOutputs(result);
+
         //sends result to server
-        socket.emit("output", result);
+        // socket.emit("output", result);
 
         break;
 
