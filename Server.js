@@ -22,11 +22,11 @@ io.on("connection", (socket) => {
 
 
   //if a new user goes to the app, then send the results array to client side
-  if (ids.includes(socket.id) === false) {
-    io.to(socket.id).emit("new-user", results);
-  } 
+  // if (ids.includes(socket.id) === false) {
+  //   io.to(socket.id).emit("new-user", results);
+  // } 
 
-  ids.push(socket.id);
+  // ids.push(socket.id);
 
   socket.on("disconnect", () => {
     console.log("User disconnected");
@@ -34,11 +34,11 @@ io.on("connection", (socket) => {
 
   //move each output into results array at the beginning of the array and make sure the length doesnt go exceed 10
   socket.on("output", (result) => {
-    results.unshift(result);
+    // results.unshift(result);
 
-    if (results.length > 10) {
-      results.pop();
-    }
+    // if (results.length > 10) {
+    //   results.pop();
+    // }
     //send result back to client so users can see other users' calculations
     io.emit("outputs", result);
 
