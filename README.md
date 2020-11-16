@@ -1,5 +1,4 @@
 # Calculator React Application
-https://calculator-mt.herokuapp.com/
 
 ## About
 * A web application that outputs calculations as they happen and shares those calculations with everyone connected to the app
